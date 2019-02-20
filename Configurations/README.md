@@ -35,11 +35,11 @@
 
 * install homebrew via https://brew.sh
 * install XCode command line toolchain
-* `xcode-select --install`
-* `brew cask install xquartz java`
-* `brew install open-ocd`
-* `brew tap PX4/px4`
-* `brew install px4-dev`
+ `xcode-select --install`
+ `brew cask install xquartz java`
+ `brew install open-ocd`
+ `brew tap PX4/px4`
+ `brew install px4-dev`
 * download the configurations flies and put it on any directory you want
 * change to directory where you put configurations flies
 * run command `make` or `make -j`
@@ -53,9 +53,9 @@
 * install `JDK` ,configure the system environment and restart computer 
 * run cmd or powershell enter `java -version` to check if JDK is installed
 * add `{FMPP_Directory}/fmpp/bin` 
-* `{GNUTOOLS_Directory}/GNU Tools/bin` 
-* `{ARMTOOLS_Directory}/GNU Tools ARM Embedded\7.0 2017q4\bin`
-* to system environment and restart computer
+ `{GNUTOOLS_Directory}/GNU Tools/bin` 
+ `{ARMTOOLS_Directory}/GNU Tools ARM Embedded\7.0 2017q4\bin`
+ to system environment and restart computer
 * run cmd or powershell enter `fmpp -v`,`arm-none-eabi-gcc -v` and `make -v` to check the environment configuration
 * change to directory where you put configurations flies
 * run command `make` or `make -j`
