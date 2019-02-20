@@ -1,0 +1,132 @@
+<@page title="FMPP - FreeMarker-based file PreProcessor" keywords="homepage">
+
+<@sect title="What is FMPP?">
+  <p>FMPP is a general-purpose text file preprocessing tool that uses <a href="${freemarkerWebsite}">FreeMarker</a> templates. It process entire directories recursively. It can be used  for generating complete static websites, source code, configuration files, etc. It can insert data from sources like CSV, XML, and JSON into the generated files. (You can add new kind of data sources in Java.) <@a href="qtour.html">See the Tutorial</@a> for a more concrete introduction.</p>
+  
+  <p>FMPP can be used with UN*X-style command-line interface, or as <a href="http://ant.apache.org">Ant</a> task, or can be embedded into your application using its Java API.</p>
+
+  <p>FMPP was written in Java, thus it runs on all modern platforms (Windows, "Linux", OS X, etc.).</p>
+
+  <p>FMPP is Free software under Apache License 2.0. <@a href="license.html">See license...</@a></p>
+  
+  <@sect title="Features">
+    <p>A quick list of FMPP capabilities:</p>
+    <ul>
+      <li>FreeMarker as the preprocessor language:
+        <ul>
+          <li>All the usual template constructs, such as include, if/else/elseif, loop.</li>
+          <li>Macros with named arguments and nested content (body).</li>
+          <li>Variables (global, or local for a macro call)</li>
+          <li>Complex expressions using string, arithmetical and logical operations.</li>
+              Extensible with custom functions.</li>
+          <li>Automatic and manual escaping (HTML, XML, custom function)</li>
+          <li>Transforming (filtering) blocks of output; extensible with custom transformations in Java.</li>
+          <li>Capturing block of output into a variable.</li>
+          <li>Charset aware, internally uses UNICODE.</li>
+          <li>Number and date/time formatting with masks (patterns). Locale sensitive formatting.</li>
+        </ul>
+      </li>
+      <li>Bulk file processing:
+        <ul>
+          <li>Process entire directories recursively.</li>
+          <li>Different file processing mode can be chosen for each file, based on path patterns (as file extension): execute file as template, or parse it as XML and then render it to output with a template, or binary-copy it, or ignore it.</li>
+          <li>Can ignore bad source files and log the error message into a text file.</li>
+          <li>Can guarantee that certain files will be processed later than others.</li>
+        </ul>
+      </li>
+      <li>You can expose data from arbitrary data sources be writing extensions in Java.
+          Currently out-of-the-box supported data sources:
+            <ul>
+              <li>XML file</li>
+              <li>CSV and tab-separated text file</li>
+              <li>JSON file</li>
+              <li>Java "properties" file</li>
+              <li>Ant properties, Ant project and target information</li>
+              <li>System clock</li>
+              <li>Plain text file</li>
+            </ul>
+      </li>
+      <li>Other highlighted features:
+        <ul>
+          <li>Output splitting: a single source file can generate multiple output files (including 0 output files).</li>
+          <li>Automatic file inclusion, automatic escaping, and whatnot that can be done with automatically inserted headers and footers, chosen based on path patterns.</li>
+          <li>Generate HTML &lt;img>-s with calculated width and height.</li>
+          <li>Calculate the relative path to the home directory, or to any other file.</li>
+          <li>Rendering (transforming) XML files with FreeMarker templates. (Similar to the typical XSLT usage pattern.)</li>
+          <li>Query the size/existence of source files.</li>
+          <li>Query output encoding (charset).</li>
+          <li>URL-escaping (with the actual output charset).</li>
+        </ul>
+      </li>
+    </ul>
+  </@sect>
+  
+</@sect>
+
+<@sect title="Documentation">
+  <#if online>
+    <p>This on-line documentation is for FMPP version ${pp.version} + FreeMarker ${pp.freemarkerVersion}.
+    The full documentation of the version you are using can be found in the <@c>docs</@c> directory of the installed FMPP.</p>
+  </#if>
+  <ul>
+    <li><@a href="manual.html"><@e>FMPP Manual</@e></@a></li>
+    <li><@a href="api/index.html">FMPP Java API</@a></li>
+    <li><@fma>FreeMarker Manual</@fma></li>
+    <li><@fma href="api/index.html">FreeMarker Java API</@fma></li>
+  </ul>
+</@sect>
+
+<@sect title="Download">
+<#if online>
+  <#macro downloadLink fileName>
+    <strong><#t>
+      <a href="http://prdownloads.sourceforge.net/fmpp/${fileName}">${fileName}</a><#t>
+      <#local rfile=basedir + pp.slash + "build/dist" + pp.slash + fileName />
+      <#if pp.realFileExists(rfile)>
+        (${(pp.realFileSize(rfile)/1024/1024)?string("#0.0")} M)
+      <#else>
+        <#stop 'File to download missing: ${rfile}'>
+      </#if>
+    </strong>
+  </#macro>
+  <p>The latest released version is FMPP ${pp.version} (comes with <a href="${freemarkerWebsite}">FreeMarker</a> ${pp.freemarkerVersion}, but <@a href="installing.html#updatingFreeMarker">you can replace it with a later version</@a>).</p>
+
+  <p>Downloads include "binaries", all documentation, and source code.</p>
+
+  <ul class="download-options"><#t>
+    <li><@downloadLink "fmpp_" + pp.version + ".tar.gz" /></li><#t>
+    <li>or <@downloadLink "fmpp_" + pp.version + ".zip" /></li><#t>
+  </ul><#t>
+
+  <p><@a href="installing.html">Installation instructions...</@a></p>
+  
+  <p><@a href="versions.html">Change log (version history)...</@a></p>
+  
+  <p>FMPP is a Java application so it <strong>requires Java to be installed</strong> on your machine (version 5 or later).</p>
+
+  <p>The FMPP <strong>Apache Ant task</strong> (optional, seldom used nowadays) requires Ant 1.5.1 or later.</p>
+  
+<#else>
+  <p>To download the latest release, please visit the FMPP website: <@url href=fmppWebsite /></p>
+</#if>
+  
+  <p>For <@e>text editor and IDE plug-ins</@e> and other FreeMarker template-related tools, please visit the FreeMarker homepage: <@url href=freemarkerWebsite /></p>
+</@sect>
+
+<@sect title="Project history and status">
+
+  <p>FMPP was mostly written in 2003 (so it predates Java generics, Maven-like dependency management, etc.), by a single guy (me), to automate some tasks at work. The code/design of my 15+ year younger myself (and of the era maybe) is funny/WTF at places, but it works, doesn't cut any corners, and was used quite heavily by many.
+  
+  <p>The project is in maintenance mode, but check the <@a href="versions.html">version history</@> to see if it's still maintained. If you hit some blocker problem, it's likely that I will fix it and do a release.
+  
+</@sect>
+
+<@sect title="Contact">
+
+  <p>Help: <a href="http://stackoverflow.com/questions/ask?tags=fmpp">Ask on Stack Overflow with "fmpp" tag</a>.</p>
+  <p>Suggestions: Use the <a href="https://sourceforge.net/p/fmpp/feature-requests/">Feature Request tracker</a>, or write to <@myEmail /></p>
+  <@reportBugs />
+  
+</@sect>
+
+</@page>

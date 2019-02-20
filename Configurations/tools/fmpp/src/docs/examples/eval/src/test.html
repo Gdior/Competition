@@ -1,0 +1,13 @@
+<p>System properties:
+<ul>
+<#list props as k, v>
+  <li>${k} = ${v}
+</#list>
+</ul>
+
+<p>Example dir:
+<ul>
+<#list exampleDir?sort as f>
+  <li>${f}
+</#list>
+</ul>
